@@ -8,9 +8,14 @@ import { EditPageComponent } from './edit-page/edit-page.component';
 import { OrdersPageComponent } from './orders-page/orders-page.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 
+
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+
 @NgModule({
   imports:[
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       {
         path: '', component: AdminLayoutComponent, children: [
