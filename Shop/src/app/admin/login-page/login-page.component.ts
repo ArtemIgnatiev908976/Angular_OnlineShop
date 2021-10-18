@@ -28,13 +28,14 @@ export class LoginPageComponent implements OnInit {
     }//если значение не валидно просто выходим из формы
     this.submitted = true  // при нажатии на кнопку привязываем true
 
-    const user = {
+    const user = {  //передаем данные пользователя
       email: this.form.value.email,
       password: this.form.value.password,
+      returnSecureToken: true  //время жизни токена
     }
     this.auth.login(user).subscribe(res=>{
       this.form.reset  //сбрасываем форму
-      this.router.navigate(['/admin', 'dashboard'])
+      this.router.navigate(['/admin', 'dashboard']) //роутинг на главную
       this.submitted = false
     }, () => {
       this.submitted = false
