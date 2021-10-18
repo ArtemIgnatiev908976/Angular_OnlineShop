@@ -49,7 +49,7 @@ export class AuthService {
     this.setToken(null) //сразу чистим localstorage
   }
 
-  isAuthenicated(){
+  isAuthenticated(){
     //если в токене есть какая то информация и он не пустое значение  !!- преобразуем в булиан и возращать значение true
     return !!this.token
   }
