@@ -7,7 +7,7 @@ import { AddPageComponent } from './add-page/add-page.component';
 import { EditPageComponent } from './edit-page/edit-page.component';
 import { OrdersPageComponent } from './orders-page/orders-page.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
-
+import { QuillModule } from 'ngx-quill'
 
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AuthGuard} from "../shared/auth.guard";
@@ -17,6 +17,7 @@ import {AuthGuard} from "../shared/auth.guard";
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    QuillModule.forRoot(),
     RouterModule.forChild([
       {
         path: '', component: AdminLayoutComponent, children: [
