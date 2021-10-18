@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../../shared/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-page',
@@ -9,14 +11,39 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class LoginPageComponent implements OnInit {
 
   form: FormGroup
-  submitted= false
-  submit (){
+
+  submitted = false
+
+  constructor(
+    public auth: AuthService,
+    private router: Router
+  ) {
 
   }
 
-  constructor() {
+
+  submit() {
+    if (this.form.invalid) {
+      return;
+    }//если значение не валидно просто выходим из формы
+    this.submitted = true  // при нажатии на кнопку привязываем true
+
+    const user = {
+      email: this.form.value.email,
+      password: this.form.value.password,
+    }
+    this.auth.login(user).subscribe(res=>{
+      this.form.reset  //сбрасываем форму
+      this.router.navigate(['/admin', 'dashboard'])
+      this.submitted = false
+    }, () => {
+      this.submitted = false
+      }
+
+    )
 
   }
+
 
   ngOnInit(): void {
     this.form = new FormGroup({
