@@ -9,6 +9,9 @@ import {FbResponse, Product} from "./interfaces";
 })
 export class ProductService {
 
+  type = 'Phone'
+
+
   constructor(private http: HttpClient ) { }
   create(product){
     return this.http.post(`${environment.fbDbUrl}/products.json`, product)
@@ -50,6 +53,9 @@ export class ProductService {
 
   update(product: Product){
     return this.http.patch(`${environment.fbDbUrl}/products/${product.id}.json`, product)
+  }
+  setType (type) {
+    this.type = type
   }
 
 }
