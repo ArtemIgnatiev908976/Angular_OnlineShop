@@ -1,1 +1,5 @@
-<p>main-page works!</p>
+<!--записываем стрим в продукты и для того чтобы пройтись по массиву *ng for-->
+<div *ngIf="products$ | async as products" class="dashboard">
+  <app-product *ngFor="let product of products$ |async as products" [product]="product" class="box">
+  </app-product>
+</div>
