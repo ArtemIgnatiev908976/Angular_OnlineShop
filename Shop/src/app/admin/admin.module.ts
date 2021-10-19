@@ -4,44 +4,44 @@ import {RouterModule} from "@angular/router";
 import { AdminLayoutComponent } from './shared/admin-layout/admin-layout.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AddPageComponent } from './add-page/add-page.component';
+import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { EditPageComponent } from './edit-page/edit-page.component';
 import { OrdersPageComponent } from './orders-page/orders-page.component';
-import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
-import { QuillModule } from 'ngx-quill'
-
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AuthGuard} from "../shared/auth.guard";
+import { QuillModule } from 'ngx-quill'
+import {SearchPipe} from "../shared/search.pipe";
 
 @NgModule({
   imports:[
+    QuillModule.forRoot(),
     CommonModule,
     FormsModule,
+
     ReactiveFormsModule,
-    QuillModule.forRoot(),
-    RouterModule.forChild([
-      {
-        path: '', component: AdminLayoutComponent, children: [
-          {path: '',redirectTo: '/admin/login', pathMatch:'full'},
-          {path: 'login', component: LoginPageComponent},
-          {path: 'dashboard', component: DashboardPageComponent, canActivate:[AuthGuard]},
-          {path: 'add', component: AddPageComponent, canActivate:[AuthGuard]},
-          {path: 'orders', component: OrdersPageComponent, canActivate:[AuthGuard]},
-          {path: 'product/:id/edit', component: EditPageComponent, canActivate:[AuthGuard]},
-        ]
-      }
-    ])
+    RouterModule.forChild([{
+      path: '', component: AdminLayoutComponent, children: [
+        {path: '', redirectTo:'/admin/login', pathMatch: 'full'},
+        {path: 'login', component: LoginPageComponent},
+        {path: 'dashboard', component: DashboardPageComponent, canActivate:[AuthGuard]},
+        {path: 'add', component: AddPageComponent, canActivate:[AuthGuard]},
+        {path: 'orders-page', component: OrdersPageComponent, canActivate:[AuthGuard]},
+        {path: 'product/:id/edit', component: EditPageComponent, canActivate:[AuthGuard]},
+
+      ]
+    }])
   ],
   exports:[RouterModule],
   declarations: [
     AdminLayoutComponent,
     LoginPageComponent,
     AddPageComponent,
+    DashboardPageComponent,
     EditPageComponent,
     OrdersPageComponent,
-    DashboardPageComponent
+    SearchPipe
   ]
 })
-
 export class AdminModule{
 
 }

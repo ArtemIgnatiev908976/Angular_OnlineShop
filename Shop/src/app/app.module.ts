@@ -12,28 +12,33 @@ import { QuillModule } from 'ngx-quill'
 import {AuthInterseptor} from "./shared/auth.interseptor";
 import { ProductComponent } from './product/product.component';
 
+
 @NgModule({
-  declarations: [
-    AppComponent,
-    MainLayoutComponent,
-    MainPageComponent,
-    ProductPageComponent,
-    CartPageComponent,
-    ProductComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    QuillModule.forRoot()
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      multi: true, //чтобы интерсепторы не перетирались
-      useClass: AuthInterseptor
-    }
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        MainLayoutComponent,
+        MainPageComponent,
+        ProductPageComponent,
+        CartPageComponent,
+        ProductComponent,
+
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        QuillModule.forRoot()
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            multi: true, //чтобы интерсепторы не перетирались
+            useClass: AuthInterseptor
+        }
+    ],
+    exports: [
+
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
