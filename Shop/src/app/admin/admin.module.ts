@@ -17,7 +17,6 @@ import {SearchPipe} from "../shared/search.pipe";
     QuillModule.forRoot(),
     CommonModule,
     FormsModule,
-
     ReactiveFormsModule,
     RouterModule.forChild([{
       path: '', component: AdminLayoutComponent, children: [
