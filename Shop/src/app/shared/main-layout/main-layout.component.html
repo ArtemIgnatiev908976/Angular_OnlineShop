@@ -1,21 +1,85 @@
 <nav class="navbar bg-dark">
-  <h2>Online Shop</h2>
-<ul>
-  <li routerLinkActive="active">
-    <a (click)="setType('Phone')" >Phone</a>
-  </li>
-  <li routerLinkActive="active">
-    <a (click)="setType('Tablet')" >Tablet</a>
-  </li>
-  <li routerLinkActive="active">
-    <a (click)="setType('Laptop')" >Laptop</a>
-  </li>
-  <li routerLinkActive="active">
-    <a (click)="setType('Cart')" [routerLink]="['/cart']">Cart</a>
-  </li>
-</ul>
+
+  <header class="header-transparent" id="header-main">
+    <nav class="navbar navbar-main navbar-expand-lg navbar-dark" id="navbar-main">
+      <div class="container"><a class="navbar-brand" href="index.html"><h2>Online Shop</h2></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-main-collapse"
+                aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation"><span
+          class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse navbar-collapse-overlay" id="navbar-main-collapse">
+          <div class="position-relative">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-main-collapse"
+                    aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                   class="feather feather-x">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+          <ul class="navbar-nav ml-lg-auto">
+            <li class="nav-item nav-item-spaced d-none d-lg-block" routerLinkActive="active">
+              <a class="nav-link" (click)="setType('Phone')">Телефоны</a>
+            </li>
+
+
+            <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover"
+                routerLinkActive="active"><a class="nav-link"
+                                             href="#" role="button"
+                                             data-toggle="dropdown"
+                                             aria-haspopup="true"
+                                             aria-expanded="false"
+                                             (click)="setType('Tablet')">Планшеты</a>
+
+            </li>
+            <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover"
+                routerLinkActive="active"><a class="nav-link"
+                                             href="#" role="button"
+                                             data-toggle="dropdown"
+                                             aria-haspopup="true"
+                                             aria-expanded="false"
+                                             (click)="setType('Laptop')">Ноутбуки</a>
+
+            </li>
+            <li class="nav-item nav-item-spaced dropdown dropdown-animate" data-toggle="hover"
+                routerLinkActive="active"><a class="nav-link"
+                                             href="#" role="button"
+                                             data-toggle="dropdown"
+                                             aria-haspopup="true"
+                                             aria-expanded="false"
+                                             (click)="setType('Cart')" [routerLink]="['/cart']">Корзина</a>
+
+            </li>
+          </ul>
+          <ul class="navbar-nav align-items-lg-center d-none d-lg-flex ml-lg-auto">
+
+          </ul>
+
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <ul>
+    <li routerLinkActive="active">
+      <a (click)="setType('Phone')">Phone</a>
+    </li>
+    <li routerLinkActive="active">
+      <a (click)="setType('Tablet')">Tablet</a>
+    </li>
+    <li routerLinkActive="active">
+      <a (click)="setType('Laptop')">Laptop</a>
+    </li>
+    <li routerLinkActive="active">
+      <a (click)="setType('Cart')" [routerLink]="['/cart']">Cart</a>
+    </li>
+  </ul>
 </nav>
 
-<div class="container"><router-outlet></router-outlet></div>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
 
 
