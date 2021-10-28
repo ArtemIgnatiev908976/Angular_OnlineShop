@@ -17,6 +17,7 @@ import {SearchPipe} from "../shared/search.pipe";
     QuillModule.forRoot(),
     CommonModule,
     FormsModule,
+
     ReactiveFormsModule,
     RouterModule.forChild([{
       path: '', component: AdminLayoutComponent, children: [
@@ -24,7 +25,7 @@ import {SearchPipe} from "../shared/search.pipe";
         {path: 'login', component: LoginPageComponent},
         {path: 'dashboard', component: DashboardPageComponent, canActivate:[AuthGuard]},
         {path: 'add', component: AddPageComponent, canActivate:[AuthGuard]},
-        {path: 'orders', component: OrdersPageComponent, canActivate:[AuthGuard]},
+        {path: 'orders-page', component: OrdersPageComponent, canActivate:[AuthGuard]},
         {path: 'product/:id/edit', component: EditPageComponent, canActivate:[AuthGuard]},
 
       ]
@@ -38,7 +39,7 @@ import {SearchPipe} from "../shared/search.pipe";
     DashboardPageComponent,
     EditPageComponent,
     OrdersPageComponent,
-    SearchPipe
+    SearchPipe,
   ]
 })
 export class AdminModule{

@@ -10,39 +10,38 @@ import {FbResponse, Product} from "./interfaces";
 export class OrderService {
 
 
-  constructor(
-    private http: HttpClient
+  constructor(private http: HttpClient) { }
 
-  ) { }
   create(order){
     return this.http.post(`${environment.fbDbUrl}/orders.json`, order)
-      .pipe(map((res: FbResponse)=>{
+      .pipe(map((res: FbResponse) =>{
         return{
-          ...order,  //возращаем все поля заказа
+          ...order,
           id: res.name,
           date: new Date(order.date)
         }
       }))
   }
 
-  getAll(){
+  getAll() {
     return this.http.get(`${environment.fbDbUrl}/orders.json`)
-      .pipe(map(res => {
+      .pipe( map ( res => {
         return Object.keys(res)
-          .map(key =>({
+          .map( key => ({
             ...res[key],
             id: key,
-            date: new Date (res[key].date)
+            date: new Date(res[key].date)
           }))
       }))
   }
 
 
 
-
   remove(id){
     return this.http.delete(`${environment.fbDbUrl}/orders/${id}.json`)
   }
+
+
 
 
 }

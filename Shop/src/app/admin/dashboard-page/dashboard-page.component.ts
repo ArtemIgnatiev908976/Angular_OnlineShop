@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../../shared/product.service";
 import {Subscription} from "rxjs";
 
@@ -11,19 +11,20 @@ export class DashboardPageComponent implements OnInit {
 
   products = []
   pSub: Subscription
-  rSub: Subscription  //отписка
+  rSub: Subscription
   productName
 
   constructor(
     private productServ: ProductService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
-   this.pSub =  this.productServ.getAll().subscribe(products =>{
+    this.pSub = this.productServ.getAll().subscribe(products => {
+      console.log(products)
       this.products = products
     })
   }
-  //отписка
 
   ngOnDestroy() {
     if (this.pSub) {
@@ -33,10 +34,10 @@ export class DashboardPageComponent implements OnInit {
       this.rSub.unsubscribe()
     }
   }
+
   remove(id) {
-    this.rSub = this.productServ.remove(id).subscribe(()=>{
-      this.products = this.products.filter(product => product.id !== id)  //возращаем те продукты у которых id не равен удаляемому
+   this.rSub = this.productServ.remove(id).subscribe(()=>{
+      this.products = this.products.filter(product => product.id !== id)
     })
   }
-
 }

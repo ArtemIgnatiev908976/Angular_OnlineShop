@@ -1,145 +1,51 @@
+<form class="card" [formGroup]="form" (ngSubmit)="submit()">
+  <h2>Войти в панель администратора</h2>
 
-
-
-
-
-
-
-<section>
-  <div class="container d-flex flex-column">
-    <div class="row align-items-center justify-content-center min-vh-100">
-      <div class="col-md-6 col-lg-5 col-xl-4 py-6 py-md-0">
-        <div>
-          <div class="mb-5 text-center"><h6 class="h3 mb-1">Войти как администратор</h6></div>
-          <span class="clearfix"></span>
-          <form [formGroup]="form" (ngSubmit)="submit()">
-            <div class="form-group"><label class="form-control-label"  for="email" >Email </label>
-              <div class="input-group">
-                <div class="input-group-prepend"><span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg"
-                                                                                     width="1em" height="1em"
-                                                                                     viewBox="0 0 24 24" fill="none"
-                                                                                     stroke="currentColor"
-                                                                                     stroke-width="2"
-                                                                                     stroke-linecap="round"
-                                                                                     stroke-linejoin="round"
-                                                                                     class="feather feather-user"><path
-                  d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7"
-                                                                               r="4"></circle></svg></span></div>
-                <input type="email" class="form-control" formControlName="email" id="email" placeholder="name@example.com">
-
-
-
-
-              </div>
-
-              <div *ngIf="form.get('email').touched && form.get('email').invalid" class="validation">
-                <small *ngIf="form.get('email').errors.required">Введите email</small>
-                <small *ngIf="form.get('email').errors.email">Введите правильный email</small>
-              </div>
-            </div>
-
-
-
-
-
-
-            <div class="form-group mb-0">
-              <div class="d-flex align-items-center justify-content-between">
-                <div><label class="form-control-label" for="password">Пароль</label></div>
-
-              </div>
-              <div class="input-group">
-                <div class="input-group-prepend"><span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg"
-                                                                                     width="1em" height="1em"
-                                                                                     viewBox="0 0 24 24" fill="none"
-                                                                                     stroke="currentColor"
-                                                                                     stroke-width="2"
-                                                                                     stroke-linecap="round"
-                                                                                     stroke-linejoin="round"
-                                                                                     class="feather feather-key"><path
-                  d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg></span>
-                </div>
-                <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
-
-
-
-              </div>
-
-              <div *ngIf="form.get('password').touched && form.get('password').invalid" class="validation">
-                <small *ngIf="form.get('password').errors.required">Введите password</small>
-                <small *ngIf="form.get('password').errors.minLength"> Пароль должен быть не менее
-                  {{form.get('password').errors.minlength.requiredLength}}
-                  символов. Сейчас он
-                  {{form.get('password').errors.minlength.actualLength}}
-                  символа.</small>
-              </div>
-            </div>
-            <div class="mt-4">
-              <button type="submit" class="btn btn-block btn-primary" [disabled]="form.invalid || submitted ">Войти</button>
-            </div>
-          </form>
-
-
-        </div>
-      </div>
+  <div
+    class="form-control"
+    [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid}"
+  >
+    <label for="email">Email:</label>
+    <input id="email" type="email" formControlName="email">
+    <div
+      *ngIf="form.get('email').touched && form.get('email').invalid"
+      class="validation"
+    >
+      <small *ngIf="form.get('email').errors.required">
+        Введите поле email
+      </small>
+      <small *ngIf="form.get('email').errors.email">
+        Поле email должно быть email
+      </small>
     </div>
   </div>
-</section>
 
+  <div
+    class="form-control"
+    [ngClass]="{invalid: form.get('password').touched && form.get('password').invalid}"
+  >
+    <label for="password">Пароль:</label>
+    <input id="password" type="password" formControlName="password">
+    <div
+      class="validation"
+      *ngIf="form.get('password').touched && form.get('password').invalid"
+    >
+      <small *ngIf="form.get('password').errors.required">
+        Введите пароль
+      </small>
+      <small *ngIf="form.get('password').errors.minlength">
+        Пароль должен быть не менее
+        {{form.get('password').errors.minlength.requiredLength}}
+        символов. Сейчас он
+        {{form.get('password').errors.minlength.actualLength}}
+        символа.
+      </small>
+    </div>
+  </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<p>login-page works!</p>-->
-<!--<form [formGroup]="form" (ngSubmit)="submit()">-->
-
-<!--  <h2>Войти как администратор</h2>-->
-
-
-<!--  <div class="form-control">-->
-<!--    <label for="email">Email</label>-->
-<!--    <input id="email" type="email" formControlName="email">-->
-<!--    <div *ngIf="form.get('email').touched && form.get('email').invalid" class="validation">-->
-<!--      <small *ngIf="form.get('email').errors.required">Введите email</small>-->
-<!--      <small *ngIf="form.get('email').errors.email">Введите правильный email</small>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--              <div class="form-control">-->
-<!--                <label for="password">Пароль</label>-->
-<!--                <input id="password" type="email" formControlName="password">-->
-<!--                <div *ngIf="form.get('password').touched && form.get('password').invalid" class="validation">-->
-<!--                  <small *ngIf="form.get('password').errors.required">Введите password</small>-->
-<!--                  <small *ngIf="form.get('password').errors.minLength"> Пароль должен быть не менее-->
-<!--                    {{form.get('password').errors.minlength.requiredLength}}-->
-<!--                    символов. Сейчас он-->
-<!--                    {{form.get('password').errors.minlength.actualLength}}-->
-<!--                    символа.</small>-->
-<!--                </div>-->
-<!--              </div>-->
-
-
-<!--  <div *ngIf="form.get('password').touched && form.get('password').invalid" class="validation">-->
-<!--    <small *ngIf="form.get('password').errors.required">Введите password</small>-->
-<!--    <small *ngIf="form.get('password').errors.minLength"> Пароль должен быть не менее-->
-<!--      {{form.get('password').errors.minlength.requiredLength}}-->
-<!--      символов. Сейчас он-->
-<!--      {{form.get('password').errors.minlength.actualLength}}-->
-<!--      символа.</small>-->
-<!--  </div>-->
-
-<!--  <button type="button" class="btn btn-primary btn-block" [disabled]="form.invalid || submitted "> Войти</button>-->
-
-<!--</form>-->
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="form.invalid || submitted"
+  >Войти</button>
+</form>

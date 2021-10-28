@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {environment} from "../../environments/environment";
+import {environment} from "src/environments/environment"
 import {tap} from "rxjs/operators";
 
 @Injectable({
@@ -8,51 +8,41 @@ import {tap} from "rxjs/operators";
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) { }
 
-  login(User) {
-    return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, User)
+  login(User){
+    return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`,User)
       .pipe(
-        tap(this.setToken)  //при входе вызываем метод для сохранения
+        tap(this.setToken)
       )
   }
 
 
-  //логика по создания токена который хранится локально
-  private setToken(response) { //принимает ответ с сервера
-    if (response) { //если ответ приходит отрабатываем
-      //время истечения токена (текущее время + +время жизни токена * 1000мсек)
-      const expData = new Date(new Date().getTime() + +response.expiresIn * 1000)
-      //заносим дату в localstorage
+  private setToken(response){
+    if(response){
+      const expData = new Date(new Date().getTime() +  +response.expiresIn * 1000)
       localStorage.setItem('fb-token-exp', expData.toString())
-      //храним токен
       localStorage.setItem('fb-token', response.idToken)
-    } else { //если нет то чистим
+    }else {
       localStorage.clear()
     }
 
   }
 
-//получение токена
-  get token() {
+  get token (){
     const expDate = new Date(localStorage.getItem('fb-token-exp'))
-    if (new Date > expDate) {
+    if(new Date > expDate){
       this.logout()
       return null
     }
-
     return localStorage.getItem('fb-token')
   }
 
   logout(){
-    this.setToken(null) //сразу чистим localstorage
+    this.setToken(null)
   }
 
   isAuthenticated(){
-    //если в токене есть какая то информация и он не пустое значение  !!- преобразуем в булиан и возращать значение true
     return !!this.token
   }
-
-
 }

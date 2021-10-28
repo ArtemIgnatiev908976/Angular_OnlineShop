@@ -9,14 +9,16 @@ import {OrderService} from "../shared/order.service";
   styleUrls: ['./cart-page.component.scss']
 })
 export class CartPageComponent implements OnInit {
+
   cartProducts = []
   totalPrice = 0
   form: FormGroup
   submitted = false
   added = ''
+
   constructor(
     private productServ: ProductService,
-    private orderServ : OrderService
+    private orderServ: OrderService
   ) {
   }
 
@@ -31,38 +33,39 @@ export class CartPageComponent implements OnInit {
       phone: new FormControl(null, Validators.required),
       address: new FormControl(null, Validators.required),
       payment: new FormControl('Cash'),
+
     })
+
   }
 
-
-
-  submit(){
-    if (this.form.invalid){
+  submit() {
+    if (this.form.invalid) {
       return
     }
     this.submitted = true
-
     const order = {
       name: this.form.value.name,
       phone: this.form.value.phone,
       address: this.form.value.address,
       payment: this.form.value.payment,
+      orders: this.cartProducts,
       price: this.totalPrice,
-      date: new Date(),
-      orders: this.cartProducts
+      date: new Date()
     }
-    console.log(this.form)
-    this.orderServ.create(order).subscribe(res => {
-      this.form.reset()
-      this.added = 'Доставка оформлена'
-      this.submitted = false
-    })
 
+    console.log(this.form)
+    this.orderServ.create(order).subscribe((res=>{
+      this.form.reset()
+      this.added='Delivery is framed '
+      this.submitted=false
+
+    }))
   }
 
   delete(product){
     this.totalPrice -= +product.price
     this.cartProducts.splice(this.cartProducts.indexOf(product), 1)
   }
+
 
 }

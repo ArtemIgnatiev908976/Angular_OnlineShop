@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductService} from "../shared/product.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Params} from "@angular/router";
 import {switchMap} from "rxjs/operators";
+
 
 @Component({
   selector: 'app-product-page',
@@ -9,8 +10,8 @@ import {switchMap} from "rxjs/operators";
   styleUrls: ['./product-page.component.scss']
 })
 export class ProductPageComponent implements OnInit {
-  product$
 
+  product$
 
   constructor(
     private productServ: ProductService,
@@ -18,16 +19,13 @@ export class ProductPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  this.product$ = this.route.params
-    // обращаемся к продук сервису, вызываем метод getbyid
-    .pipe(switchMap(params => {
-      return this.productServ.getById(params['id'])
-    }))
+    this.product$=this.route.params
+      .pipe(switchMap((params: Params)=>{
+        return this.productServ.getById(params['id'])
+      }))
   }
-
 
   addProduct(product) {
     this.productServ.addProduct(product)
   }
-
 }

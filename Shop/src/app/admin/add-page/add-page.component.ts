@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, Validators, FormControl,} from "@angular/forms";
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {ProductService} from "../../shared/product.service";
 import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-add-page',
@@ -9,8 +10,9 @@ import {Router} from "@angular/router";
   styleUrls: ['./add-page.component.scss']
 })
 export class AddPageComponent implements OnInit {
-form: FormGroup
 submitted = false
+  form: FormGroup
+
   constructor(
     private productServ: ProductService,
     private router: Router
@@ -26,12 +28,11 @@ submitted = false
     })
   }
 
-  submit(){
-    if (this.form.invalid){
+  submit() {
+    if (this.form.invalid) {
       return
     }
-    this.submitted = true
-
+this.submitted = true
     const product = {
       type: this.form.value.type,
       title: this.form.value.title,
@@ -40,11 +41,13 @@ submitted = false
       price: this.form.value.price,
       date: new Date()
     }
+
     console.log(this.form)
-    this.productServ.create(product).subscribe(res => console.log(res))
-    this.form.reset()
-    this.submitted = false
-    this.router.navigate(['/'])
+    this.productServ.create(product).subscribe((res=>{
+      this.form.reset()
+      this.submitted=false
+      this.router.navigate(['/'])
+    }))
   }
 
 }

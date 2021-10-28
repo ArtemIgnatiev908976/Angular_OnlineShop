@@ -1,29 +1,18 @@
-
 <nav class="navbar bg-dark">
-  <h1>
-    <a routerLink="/">Online Shop</a>
-  </h1>
-  <ul *ngIf="auth.isAuthenticated(); else login">
-    <li routerLinkActive="active">
-      <a [routerLink]="['/admin','dashboard']">Dashboard</a>
-    </li>
-    <li routerLinkActive="active">
-      <a [routerLink]="['/admin','add']">Add product</a>
-    </li>
-    <li routerLinkActive="active">
-      <a [routerLink]="['/admin','orders']">Orders</a>
-    </li>
-    <li routerLinkActive="active">
-      <a href="#" (click)="logout($event)">Logout</a>
-    </li>
-  </ul>
+  <h1><a routerLink="/"></a>Admin Shop</h1>
 
+  <ul *ngIf ="auth.isAuthenticated(); else login">
+    <li routerLinkActive="active"><a [routerLink]="['/admin', 'dashboard']" >Dashboard</a></li>
+    <li routerLinkActive="active"><a [routerLink]="['/admin', 'add']" >Add product</a></li>
+    <li routerLinkActive="active"><a [routerLink]="['/admin', 'orders-page']" >Orders</a></li>
+    <li routerLinkActive="active"><a href="#" (click)="logout($event)" > Logout</a></li>
+
+  </ul>
   <ng-template #login>
     <ul>
-      <li routerLinkActive="active">
-        <a [routerLink]="['/admin','login']">Login</a>
-      </li>
+      <li routerLinkActive="active"><a [routerLink]="['/admin', 'login']" >Login</a></li>
     </ul>
+
   </ng-template>
 
 </nav>
@@ -32,6 +21,4 @@
 <div class="container">
   <router-outlet></router-outlet>
 </div>
-
-
 

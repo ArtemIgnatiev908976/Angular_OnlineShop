@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {ProductService} from "../shared/product.service";
 
 @Component({
@@ -8,20 +8,16 @@ import {ProductService} from "../shared/product.service";
 })
 export class ProductComponent implements OnInit {
 
-
-  //принимаем с главного компонента продукты
   @Input() product
 
   constructor(
     private productServ: ProductService
-  ) {
-  }
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   addProduct(product) {
-    this.productServ.addProduct(product)
+this.productServ.addProduct(product)
   }
-
 }

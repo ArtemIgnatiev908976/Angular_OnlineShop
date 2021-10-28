@@ -47,7 +47,7 @@ export class EditPageComponent implements OnInit {
 
 
     this.productServ.update({
-      ...this.product, //возвращаем продукт с сервера
+      ...this.product,
       type: this.form.value.type,
       title: this.form.value.title,
       photo: this.form.value.photo,
